@@ -1,0 +1,238 @@
+#noresults, #loading {
+  display: none;
+}
+
+html{
+height: 100%;
+}
+body {
+  margin: 2rem;
+  background-image: url(../images/Pear_and_Name.png);
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position-x: 50%;
+  background-attachment: fixed;
+  position: relative;
+  height: auto;
+  min-height: 100% !important;
+
+}
+
+h1, h2, input, p {
+  font-weight: 400;
+  font-family: sans-serif;
+  margin: 1rem 0;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+input, p {
+  font-size: 2rem;
+}
+
+input {
+  padding: .5rem;
+  margin-bottom: 1rem;
+}
+
+img {
+  vertical-align: top;
+  margin: 0 2rem 2rem 0;
+}
+
+.navbar-nav,.navbar-header{
+  font-size: larger;
+}
+
+#box{
+  padding: 20px;
+}
+
+
+#results{
+  display:flex;
+  flex-direction: column;
+}
+
+#search{
+  font-size: 2rem;
+}
+
+#note{
+  font-size: 1rem;
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+}
+
+#header2{
+  width: 100%;
+  background-color: #f5b037;
+  color: white;
+}
+
+#container{
+  display: flex;
+  flex-direction: row;
+  height: 1000px;
+}
+
+  #menu{
+    color: #bce19c;
+    margin: 20px;
+
+  }
+
+    .list-group-item{
+      color: #f5b037;
+    }
+
+  #nutritions{
+    background-color: #bce19c;
+    height: 1000px;
+
+  }
+
+    #nutrition{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      float:right;
+    }
+
+      #allergen{
+        width: 100%;
+        text-align: left;
+      }
+
+
+#reviews{
+  padding: 30px;
+}
+
+
+  .card {
+    border-radius: 5px;
+    background-color: #fff;
+    padding-left: 60px;
+    padding-right: 60px;
+    margin-top: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px
+}
+
+.rating-box {
+    width: 130px;
+    height: 130px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #FBC02D;
+    color: #fff
+}
+
+.rating-label {
+    font-weight: bold
+}
+
+.rating-bar {
+    width: 300px;
+    padding: 8px;
+    border-radius: 5px
+}
+
+.bar-container {
+    width: 100%;
+    background-color: #f1f1f1;
+    text-align: center;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-bottom: 5px
+}
+
+.bar-5 {
+    width: 70%;
+    height: 13px;
+    background-color: #FBC02D;
+    border-radius: 20px
+}
+
+.bar-4 {
+    width: 30%;
+    height: 13px;
+    background-color: #FBC02D;
+    border-radius: 20px
+}
+
+.bar-3 {
+    width: 20%;
+    height: 13px;
+    background-color: #FBC02D;
+    border-radius: 20px
+}
+
+.bar-2 {
+    width: 10%;
+    height: 13px;
+    background-color: #FBC02D;
+    border-radius: 20px
+}
+
+.bar-1 {
+    width: 0%;
+    height: 13px;
+    background-color: #FBC02D;
+    border-radius: 20px
+}
+
+td {
+    padding-bottom: 10px
+}
+
+.star-active {
+    color: #FBC02D;
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.star-active:hover {
+    color: #F9A825;
+    cursor: pointer
+}
+
+.star-inactive {
+    color: #CFD8DC;
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.blue-text {
+    color: #0091EA
+}
+
+.content {
+    font-size: 18px
+}
+
+.profile-pic {
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+    margin-right: 30px
+}
+
+.pic {
+    width: 200px;
+    height: 200px;
+    margin-right: 10px
+}
+
+.vote {
+    cursor: pointer
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>Search Example</title>
+</head>
+<body>
+<nav class="navbar navbar-default" style="background-color: #bce19c;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#top">Nutripair</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#top">Ingredient search</a></li>
+      <li><a href="foods.html">Nutrition Breakdown</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+  <div id="box">
+    <h1>Nutrition Search</h1>
+    <input id="search" autocomplete="off" placeholder="Search">
+    <div id="results"></div>
+    <p id="noresults">No results. Try another search term.</p>
+    <p id="loading">Getting results...</p>
+  </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="scripts/search.js"></script>
+</body>
+</html>
