@@ -8,6 +8,8 @@ by: Jason Nguyen
 
 import pandas as pd
 from collections import defaultdict
+from opensearchpy import OpenSearch, RequestsHttpConnection, AWSV4SignerAuth
+import boto3
 
 '''
 read_excel()
@@ -43,6 +45,48 @@ def read_excel(fileName):
 	# return dictionary with all food ingredient data
 	return food_data
 
+
+'''
+query_food()
+Input: (string: foodItem)
+Output: (dict[dict]: nutritionInformation)
+'''
+def query_food(foodItem):
+
+	host = 'https://search-nutripair-dev2-toqicucpwv65awgbezwshuwbvy.us-west-1.es.amazonaws.com' # cluster endpoint, for example: my-test-domain.us-east-1.es.amazonaws.com
+	region = 'us-west-1' # e.g. us-west-1
+
+	credentials = boto3.Session().get_credentials()
+	auth = AWSV4SignerAuth(credentials, region)
+	index_name = 'movies'
+
+	client = OpenSearch(
+		hosts = [{'host': host, 'port': 443}],
+		http_auth = auth,
+		use_ssl = True,
+		verify_certs = True,
+		connection_class = RequestsHttpConnection
+	)
+
+	q = 'millk'
+	query = {
+	'size': 5,
+	'query': {
+		'multi_match': {
+		'query': q
+		}
+	}
+	}
+
+	response = client.search(
+		body = query,
+		index = index_name
+	)
+
+	print('\nSearch results:')
+	print(response)
+
+
 '''
 calculate_nutrition()
 Input: (dict: food_data)
@@ -50,6 +94,4 @@ Output: (dict: nutrition_labels)
 '''
 def calculate_nutrition(food_data):
 	pass
-		
-
 
