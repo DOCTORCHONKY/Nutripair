@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 #need to change parameters if reading a different excel sheet, and/or depending on where the column headers are
 excel_data = pd.read_excel("Jan's Health Bar (SAMPLE MENU).xlsx", header=5)
 
@@ -25,7 +26,7 @@ for i, row in excel_data.iterrows():
         #
         #calculate nutrition values
         #change temp_l indices as needed by doing temp_l[i] += [insert calculated nutrition value here]
-    
+        
 
 #TEST IF CAN INDEX row BY HEADER NAME, WORKS!!!
 #to make dataframe: df = pd.DataFrame([[11, 21, 31], [12, 22, 32], [31, 32, 33]],index=['one', 'two', 'three'], columns=['a', 'b', 'c'])
@@ -42,6 +43,7 @@ for i, row in excel_data.iterrows():
 #TO DO
 """
 - query opensearch for ingredients
+# row ["INGREDIENTS"]
 - calculate nutrition using opensearch and measurements and append to temp_l
 - write back to excel
 """
