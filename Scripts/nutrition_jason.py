@@ -58,7 +58,7 @@ def query_food(foodItem):
 
 	credentials = boto3.Session().get_credentials()
 	auth = AWSV4SignerAuth(credentials, region)
-	index_name = 'movies'
+	index_name = 'usdafoods'
 
 	client = OpenSearch(
 		hosts = [{'host': host, 'port': 443}],
@@ -68,7 +68,7 @@ def query_food(foodItem):
 		connection_class = RequestsHttpConnection
 	)
 
-	q = 'millk'
+	q = 'milk'
 	query = {
 	'size': 5,
 	'query': {
