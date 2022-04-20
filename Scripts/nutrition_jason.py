@@ -27,17 +27,29 @@ def read_excel(fileName):
 
 	# iterate through excel sheet
 	for i, row in excel_data.iterrows():
-		if not pd.isnull(row["MENU ITEM"]): #if cell is not null
+		# if menu item cell is not null -> add it as a menu item
+		if not pd.isnull(row["MENU ITEM"]):
 			food_data[row["MENU ITEM"]] = defaultdict(str)
 			currMenuItem = row["MENU ITEM"]
+		# if menu item cell is null, we are working with previous menu item
 		else:
+			# food_data[currentMenuItem][ingredient] = (measurement,raw/not raw)
+			# RAW = 1, NOT RAW = 0
 			if (row["RAW"] == 'x'):				
 				food_data[currMenuItem][row["INGREDIENTS"]] = (row["MEASUREMENTS"],1)
 			else:
 				food_data[currMenuItem][row["INGREDIENTS"]] = (row["MEASUREMENTS"],0)
 
-	
+	# return dictionary with all food ingredient data
 	return food_data
+
+'''
+calculate_nutrition()
+Input: (dict: food_data)
+Output: (dict: nutrition_labels)
+'''
+def calculate_nutrition(food_data):
+	pass
 		
 
 
