@@ -8,7 +8,7 @@ by: Jason Nguyen
 
 import pandas as pd
 from collections import defaultdict
-from opensearchpy import OpenSearch, RequestsHttpConnection, AWSV4SignerAuth
+from opensearchpy import OpenSearch, RequestsHttpConnection
 import boto3
 
 '''
@@ -80,7 +80,7 @@ def query_ingredient(ingredient):
 	client = connect()
 	q = ingredient
 	query = {
-	'size': 5,
+	'size': 10,
 	'query': {
 		'multi_match': {
 		'query': q
@@ -98,7 +98,22 @@ def query_ingredient(ingredient):
 
 	for i in range(response["hits"]["total"]["value"] if response["hits"]["total"]["value"] <= 10 else 10):
 		try:
-			print("Food: ", i, "Protein_g: ", response["hits"]["hits"][i]["_source"]["Protein_g"], "Category: ", response["hits"]["hits"][i]["_source"]["Food_Description"])
+			print("Food: ", i, "Category: ", response["hits"]["hits"][i]["_source"]["Food_Description"])
+			print("CALORIES: ", response["hits"]["hits"][i]["_source"]["Energy_kcal"])
+			print("TOTAL FAT (g): ", response["hits"]["hits"][i]["_source"]["Total_Fat_g"])
+			print("SATURATED FAT (g): ", response["hits"]["hits"][i]["_source"]["Saturated_Fat_g"])
+			print("TRANS FAT (g): ", response["hits"]["hits"][i]["_source"]["Monounsaturated_Fat_g"]) # MISSING
+			print("CHLOESTEROL (mg): ", response["hits"]["hits"][i]["_source"]["Cholesterol_mg"])
+			print("SODIUM (mg): ", response["hits"]["hits"][i]["_source"]["Sodium_mg"])
+			print("TOTAL CARBOHYDRATE (g): ", response["hits"]["hits"][i]["_source"]["Carbohydrate_g"])
+			print("DIETARY FIBER (g): ", response["hits"]["hits"][i]["_source"]["Total_Dietary_Fiber_g"])
+			print("TOTAL SUGARS (g): ", response["hits"]["hits"][i]["_source"]["Total_Sugars_g"])
+			print("ADDED SUGARS (g): ", "0") # MISSING
+			print("PROTEIN (g): ", response["hits"]["hits"][i]["_source"]["Protein_g"])
+			print("VITAMIN D (mcg): ", response["hits"]["hits"][i]["_source"]["Vitamin_D_mcg"]) # MCG not MG
+			print("CALCIUM (mg): ", response["hits"]["hits"][i]["_source"]["Calcium_mg"])
+			print("IRON (mg): ", response["hits"]["hits"][i]["_source"]["Iron_mg"])
+			print("POTASSIUM (mg): ", response["hits"]["hits"][i]["_source"]["Potassium_mg"])
 		except:
 			break
 
