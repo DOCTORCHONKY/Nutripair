@@ -47,28 +47,35 @@ def read_excel(fileName):
 
 
 '''
-query_food()
-Input: (string: foodItem)
-Output: (dict[dict]: nutritionInformation)
+connect()
+Input: None
+Output: None
 '''
-def query_food(foodItem):
-
+def connect():
 	host = 'https://search-nutripair-dev2-toqicucpwv65awgbezwshuwbvy.us-west-1.es.amazonaws.com' # cluster endpoint, for example: my-test-domain.us-east-1.es.amazonaws.com
 	region = 'us-west-1' # e.g. us-west-1
+	awsauth = ("capstone", "Nutripaircapstone_")
 
-	credentials = boto3.Session().get_credentials()
-	auth = AWSV4SignerAuth(credentials, region)
-	index_name = 'usdafoods'
 
 	client = OpenSearch(
 		hosts = [{'host': host, 'port': 443}],
-		http_auth = auth,
+		http_auth = awsauth,
 		use_ssl = True,
 		verify_certs = True,
 		connection_class = RequestsHttpConnection
 	)
 
-	q = 'milk'
+	return client
+
+'''
+query_food()
+Input: (string: foodItem)
+Output: (dict[dict]: nutritionInformation)
+'''
+def query_food(foodItem):
+	index_name = 'usdafoods'
+	client = connect()
+	q = foodItem
 	query = {
 	'size': 5,
 	'query': {
@@ -95,3 +102,16 @@ Output: (dict: nutrition_labels)
 def calculate_nutrition(food_data):
 	pass
 
+
+
+
+if __name__ == "__main__":
+
+	print("Calculating Nutrition Labels for Jan's Health Bar")
+
+	# Restaurant Food Item Data
+	fileName = "Jan's Health Bar (SAMPLE MENU).xlsx"
+	# Read food item data
+	food_data = read_excel(fileName)
+	# Query milk
+	query_food("milk")
