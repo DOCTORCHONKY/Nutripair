@@ -54,11 +54,12 @@ Output: None
 def connect():
 	host = 'https://search-nutripair-dev2-toqicucpwv65awgbezwshuwbvy.us-west-1.es.amazonaws.com' # cluster endpoint, for example: my-test-domain.us-east-1.es.amazonaws.com
 	region = 'us-west-1' # e.g. us-west-1
-	awsauth = ("capstone", "Nutripaircapstone_")
+	awsauth = ("capstone", "Nutripairrocks123!")
 
 
 	client = OpenSearch(
-		hosts = [{'host': host, 'port': 443}],
+		hosts = host,
+		port = 403,
 		http_auth = awsauth,
 		use_ssl = True,
 		verify_certs = True,
