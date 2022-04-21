@@ -71,12 +71,14 @@ def connect():
 '''
 query_food()
 Input: (string: foodItem)
-Output: (dict[dict]: nutritionInformation)
+Output: (dict[nutrition]: nutritionInformation)
 '''
-def query_food(foodItem):
+def query_ingredient(ingredient):
+	nutrition_info = {}
+
 	index_name = 'usdafoods'
 	client = connect()
-	q = foodItem
+	q = ingredient
 	query = {
 	'size': 5,
 	'query': {
@@ -94,8 +96,14 @@ def query_food(foodItem):
 	print('\nSearch results:')
 	print(response)
 
+	for i in range(response["hits"]["total"]["value"] if response["hits"]["total"]["value"] <= 10 else 10):
+		try:
+			print("Food: ", i, "Protein_g: ", response["hits"]["hits"][i]["_source"]["Protein_g"], "Category: ", response["hits"]["hits"][i]["_source"]["Food_Description"])
+		except:
+			break
 
-'''
+
+''' 
 calculate_nutrition()
 Input: (dict: food_data)
 Output: (dict: nutrition_labels)
@@ -115,4 +123,5 @@ if __name__ == "__main__":
 	# Read food item data
 	food_data = read_excel(fileName)
 	# Query milk
-	query_food("milk")
+	query_ingredient("milk")
+
