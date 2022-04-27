@@ -18,7 +18,7 @@ Output: (dict: food_data)
 '''
 def read_excel(fileName):
 	#need to change parameters if reading a different excel sheet, and/or depending on where the column headers are
-	excel_data = pd.read_excel("Jan's Health Bar (SAMPLE MENU).xlsx", header=5)
+	excel_data = pd.read_excel(fileName, header=5)
 
 	# food_data
 	# {string menu item: {string ingredient: (float measurements, boolean raw)}}
@@ -171,6 +171,28 @@ def calculate_nutrition(food_data):
 	print(nutrition_labels)
 	return nutrition_labels
 			
+def write_excel(nutrition_labels):
+	food_names = [] # used as index in excel
+	nutrition_header = [] # used as columm header in excel
+	items = [] # used as values of cells in excel
+
+	for food_name in nutrition_labels.keys():
+		food_names.append(food_name)
+	if food_names == []:#edge case for empty dict, allows us to ensure there is at least one item so that we can use the first dict item to get the nutrition headers
+		print("ERROR: Empty nutrition_labels, no output was written to excel")
+		return
+	for header in nutrition_labels[food_names[0]].keys():
+		nutrition_header.append(header)
+	for food_name in nutrition_labels.keys():
+		temp_items = []
+		for value in nutrition_labels[food_name].values():
+			temp_items.append(value)
+		items.append(temp_items)
+		
+	df = pd.DataFrame(items, index=food_names, columns=nutrition_header)# NOTICE: will not print out a cell value if it is 'nan', could use if statement to append a 0 instead, if wanted
+	with pd.ExcelWriter("NutritionOutput.xlsx") as writer:
+		df.to_excel(writer)
+	print("Nutrition results outputted into 'NutritionOutput.xlsx'")
 
 
 
@@ -185,4 +207,6 @@ if __name__ == "__main__":
 	food_data = read_excel(fileName)
 	# Calculate nutrition labels for food_data
 	nutrition_labels = calculate_nutrition(food_data)
+	# Write back nutrition info into another excel sheet
+	write_excel(nutrition_labels)
 
